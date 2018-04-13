@@ -6,13 +6,13 @@ expdate=( $(jq -r '.[].expirationDate' <<< "$OUT") )
 
 termdate=( $(jq -r '.[].terminationDate'  <<< "$OUT") )
 
-purpose=( $(jq -r '.[].purpose'  sout) )
+purpose=( $(jq -r '.[].purpose'  <<< "$OUT") )
 
-project=( $(jq -r '.[].project'  sout) )
+project=( $(jq -r '.[].project'  <<< "$OUT") )
 
-environment=( $(jq -r '.[].environment'  sout) )
+environment=( $(jq -r '.[].environment'  <<< "$OUT") )
 
-instanceowner=( $(jq -r '.[].instance_owner' sout) )
+instanceowner=( $(jq -r '.[].instance_owner' <<< "$OUT") )
 
 n=${#instid[@]}
 
