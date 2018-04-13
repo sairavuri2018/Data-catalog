@@ -1,10 +1,10 @@
 OUT=$(curl https://demo4391077.mockable.io/catalog/getall)
 
-instid=( $(jq -r '.[].instance_id' sout) )
+instid=( $(jq -r '.[].instance_id' <<< "$OUT") )
 
-expdate=( $(jq -r '.[].expirationDate'  sout) )
+expdate=( $(jq -r '.[].expirationDate' <<< "$OUT") )
 
-termdate=( $(jq -r '.[].terminationDate'  sout) )
+termdate=( $(jq -r '.[].terminationDate'  <<< "$OUT") )
 
 purpose=( $(jq -r '.[].purpose'  sout) )
 
