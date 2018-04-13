@@ -1,18 +1,18 @@
-OUT=$(curl https://demo9159024.mockable.io/getall)
+OUT=$(curl https://demo4391077.mockable.io/catalog/getall)
 
-instid=( $(jq -r '.[].instance_id' <<< "$OUT") )
+instid=( $(jq -r '.[].instance_id' sout) )
 
-expdate=( $(jq -r '.[].expirationDate'  <<< "$OUT") )
+expdate=( $(jq -r '.[].expirationDate'  sout) )
 
-termdate=( $(jq -r '.[].terminationDate'  <<< "$OUT") )
+termdate=( $(jq -r '.[].terminationDate'  sout) )
 
-purpose=( $(jq -r '.[].purpose'  <<< "$OUT") )
+purpose=( $(jq -r '.[].purpose'  sout) )
 
-project=( $(jq -r '.[].project'  <<< "$OUT") )
+project=( $(jq -r '.[].project'  sout) )
 
-environment=( $(jq -r '.[].environment'  <<< "$OUT") )
+environment=( $(jq -r '.[].environment'  sout) )
 
-instanceowner=( $(jq -r '.[].instance_owner' <<< "$OUT") )
+instanceowner=( $(jq -r '.[].instance_owner' sout) )
 
 n=${#instid[@]}
 
@@ -24,6 +24,6 @@ do
 
 #echo "aws ec2 create-tags --resources "${arr[$i]}" --tags Key=Term_date,Val$
 
-echo "aws ec2 create-tags --resources "${instid[$i]}" --tags '[ {\"Key\": \"Term_date\", \"Value\":\""${termdate[$i]}"\"},{\"Key\": \"EXP_date\", \"Value\":$
+echo "aws ec2 create-tags --resources "${instid[$i]}" --tags '[ {\"Key\": \"Term_date\", \"Value\":\""${termdate[$i]}"\"},{\"Key\": \"EXP_date\", \"Value\":\""${expdate[$i]}"\"}, {\"Key\": \"purpose\", \"Value\":\""${purpose[$i]}"\"}, {\"Key\": \"project\", \"Value\":\""${project[$i]}"\"}, {\"Key\": \"instance_owner\", \"Value\":\""${instanceowner[$i]}"\"}, {\"Key\": \"environment\", \"Value\":\""${environment[$i]}"\"}]'" | bash -
 
 done
