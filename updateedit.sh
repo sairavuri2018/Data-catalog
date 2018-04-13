@@ -1,4 +1,4 @@
-OUT=$(curl https://http://demo9159024.mockable.io/getall)
+OUT=$(curl https://demo9159024.mockable.io/getall)
 
 instid=( $(jq -r '.[].instance_id' <<< "$OUT") )
 
