@@ -2,9 +2,9 @@ checking(){
 
         EXP=$1
         DATE=`date +"%D"`
-        #EXP=$($EXP +"%Y%m%d")
-        EXP=$(date -d $EXP +"%Y%m%d")
-        TODAY=$(date --date yesterday +"%Y%m%d")
+        #EXP=$($EXP +"%m%d%y")
+        EXP=$(date -d $EXP +"%m%d%Y")
+        TODAY=$(date --date yesterday +"%m%d%Y")
         #TODAY=$(date +"%Y%m%d")
          echo $EXP
          echo $TODAY
