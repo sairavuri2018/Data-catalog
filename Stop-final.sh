@@ -1,22 +1,3 @@
-checking(){
-
-        EXP=$1
-        DATE=`date +"%D"`
-        #EXP=$($EXP +"%Y%m%d")
-        EXP=$(date -d $EXP +"%m%d%Y")
-        #TODAY=$(date --date yesterday +"%Y%m%d")
-        TODAY=$(date +"%Y%m%d")
-         echo $EXP
-         echo $TODAY
-        if [[ "$TODAY" > "$EXP" ]]; then
-               aws ec2 stop-instances --instance-ids $INSTANCE_ID
-echo "tes"
-fi
-
-
-}
-
-
 process(){
 
         echo $TAGS | jq -c '.[]' | while read TAG; do
@@ -51,4 +32,20 @@ echo $RESERVATIONS | jq -c '.Reservations[]' | while read INSTANCES; do
 process
         done
 done
+checking(){
 
+        EXP=$1
+        DATE=`date +"%D"`
+        #EXP=$($EXP +"%Y%m%d")
+        EXP=$(date -d $EXP +"%m%d%Y")
+        #TODAY=$(date --date yesterday +"%Y%m%d")
+        TODAY=$(date +"%Y%m%d")
+         echo $EXP
+         echo $TODAY
+        if [[ "$TODAY" > "$EXP" ]]; then
+               aws ec2 stop-instances --instance-ids $INSTANCE_ID
+echo "test"
+fi
+
+
+}
