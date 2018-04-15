@@ -24,6 +24,6 @@ do
 
 #echo "aws ec2 create-tags --resources "${arr[$i]}" --tags Key=Term_date,Val$
 
-echo "aws ec2 create-tags --resources "${instid[$i]}" --tags '[ {\"Key\": \"Term_date\", \"Value\":\""${termdate[$i]}"\"},{\"Key\": \"EXP_date\", \"Value\":\""${expdate[$i]}"\"}, {\"Key\": \"purpose\", \"Value\":\""${purpose[$i]}"\"}, {\"Key\": \"project\", \"Value\":\""${project[$i]}"\"}, {\"Key\": \"instance_owner\", \"Value\":\""${instanceowner[$i]}"\"}, {\"Key\": \"environment\", \"Value\":\""${environment[$i]}"\"}]'" | bash -
+echo "aws ec2 create-tags --resources "${instid[$i]}" --tags '[ {\"Key\": \"termination_date\", \"Value\":\""${termdate[$i]}"\"},{\"Key\": \"expiry_date\", \"Value\":\""${expdate[$i]}"\"}, {\"Key\": \"purpose\", \"Value\":\""${purpose[$i]}"\"}, {\"Key\": \"project\", \"Value\":\""${project[$i]}"\"}, {\"Key\": \"instance_owner\", \"Value\":\""${instanceowner[$i]}"\"}, {\"Key\": \"environment\", \"Value\":\""${environment[$i]}"\"}]'" | bash -
 
 done
