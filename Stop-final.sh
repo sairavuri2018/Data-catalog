@@ -1,3 +1,21 @@
+# List all the instances in the region
+RESERVATIONS=`aws ec2 describe-instances | jq -c '.'`
+
+echo $RESERVATIONS | jq -c '.Reservations[]' | while read INSTANCES; do
+
+        #Iterate over instances
+        echo $INSTANCES | jq -c '.Instances[]' | while read INSTANCE; do
+
+                INSTANCE_ID=`echo $INSTANCE | jq -r '.InstanceId'`
+                TAGS=`echo $INSTANCE | jq -c '.Tags'`
+
+#echo $TAGS
+#echo $INSTANCE_ID
+process
+        done
+done
+
+
 process(){
 
         echo $TAGS | jq -c '.[]' | while read TAG; do
@@ -15,23 +33,6 @@ fi
         done
 
 }
-
-# List all the instances in the region
-RESERVATIONS=`aws ec2 describe-instances | jq -c '.'`
-
-echo $RESERVATIONS | jq -c '.Reservations[]' | while read INSTANCES; do
-
-        #Iterate over instances
-        echo $INSTANCES | jq -c '.Instances[]' | while read INSTANCE; do
-
-                INSTANCE_ID=`echo $INSTANCE | jq -r '.InstanceId'`
-                TAGS=`echo $INSTANCE | jq -c '.Tags'`
-
-#echo $TAGS
-#echo $INSTANCE_ID
-process
-        done
-done
 checking(){
 
         EXP=$1
